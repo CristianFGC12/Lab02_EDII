@@ -16,7 +16,7 @@ namespace Huffman
 
         public List<bool> Traverse(char symbol, List<bool> data)
         {
-            // Leaf
+ 
             if (Right == null && Left == null)
             {
                 if (symbol.Equals(this.Symbol))
@@ -90,10 +90,10 @@ namespace Huffman
 
                 if (orderedNodes.Count >= 2)
                 {
-                    // Take first two items
+
                     List<Node> taken = orderedNodes.Take(2).ToList<Node>();
 
-                    // Create a parent node by combining the frequencies
+
                     Node parent = new Node()
                     {
                         Symbol = '*',

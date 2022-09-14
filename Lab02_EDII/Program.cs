@@ -37,8 +37,8 @@ namespace Lab02_EDII
                     {
                         Compania comp = new Compania();
                         comp.Name = trabajar.companies[i];
-                        comp.Libreria.Build(comp.Name + trabajar.dpi);
-                        comp.dpicod = comp.Libreria.Encode(comp.Name + trabajar.dpi);
+                        comp.Libreria.Build(comp.Name + "/" + trabajar.dpi);
+                        comp.dpicod = comp.Libreria.Encode(comp.Name +"/"+ trabajar.dpi);
                         companias.Add(comp);
                     }
                     Ingreso ingreso = new Ingreso();
@@ -75,8 +75,8 @@ namespace Lab02_EDII
                             {
                                 Compania comp = new Compania();
                                 comp.Name = dupli[i];
-                                comp.Libreria.Build(comp.Name + trabajar.dpi);
-                                comp.dpicod = comp.Libreria.Encode(comp.Name + trabajar.dpi);
+                                comp.Libreria.Build(comp.Name +"/"+ trabajar.dpi);
+                                comp.dpicod = comp.Libreria.Encode(comp.Name +"/"+ trabajar.dpi);
                                 sindupli.Add(comp);
                             }
                             solicitante.Search(busqueda, ComparacioDPI).companies = sindupli;
@@ -150,13 +150,20 @@ namespace Lab02_EDII
                         {
                             if (solicitante.getAll()[k].companies[l].Name == seleccionado) 
                             {
+                                
                                 Mostrar empleado = new Mostrar();
                                 empleado.name = solicitante.getAll()[k].name;
                                 empleado.dpi = solicitante.getAll()[k].dpi;
                                 empleado.dateBirth = solicitante.getAll()[k].dateBirth;
                                 empleado.address = solicitante.getAll()[k].address;
                                 empleado.companie = solicitante.getAll()[k].companies[l];
-                                empleado.decode = solicitante.getAll()[k].companies[l].Libreria.Decode(solicitante.getAll()[k].companies[l].dpicod);
+                                string[] split = solicitante.getAll()[k].companies[l].Libreria.Decode(solicitante.getAll()[k].companies[l].dpicod).Split('/');
+                                if (split[1].Length > 13) 
+                                {
+                                    while (split[1].Length > 13)
+                                        split[1] = split[1].Remove(split[1].Length - 1);
+                                }
+                                empleado.decode = split[1];
                                 finale.Add(empleado);
                             }
                         }
