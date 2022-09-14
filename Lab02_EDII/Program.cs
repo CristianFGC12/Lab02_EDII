@@ -121,7 +121,7 @@ namespace Lab02_EDII
             solicitantelist.Add(solicitantefin);
             Serializacion(solicitantelist, rutaguardar);
             string rutacompanias = "";
-            Console.WriteLine("Ingrese la direccion de archvio");
+            Console.WriteLine("Ingrese la direccion de archvio en donde estan las compañias");
             rutacompanias = Console.ReadLine();
             var reader2 = new StreamReader(File.OpenRead(rutacompanias));
             List<string> Companiasingre = new List<string>();
